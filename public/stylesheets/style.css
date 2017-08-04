@@ -1,0 +1,65 @@
+body {
+  padding: 50px;
+}
+
+a {
+  color: #00B7FF;
+}
+
+.menu {
+    position: absolute;
+    width: 200px;
+}
+
+.main {
+    min-width: 800px;
+    margin-left: 250px;
+}
+
+.success {
+    color: rgb(28, 184, 65);
+}
+
+.error {
+    color: rgb(202, 60, 60);
+}
+
+.main-table {
+    margin-top:40px;
+}
+
+.result-msg {
+    text-align: center;
+    font-size: 35px;
+}
+
+.item-reverted {
+    background-color: #E6E6E6;
+    color: #265778;
+    opacity: .4
+}
+
+.button-success,
+.button-error,
+.button-warning,
+.button-secondary {
+    color: white;
+    border-radius: 4px;
+    text-shadow: 0 1px 1px rgba(0, 0, 0, 0.2);
+}
+
+.button-success {
+    background: rgb(28, 184, 65); /* this is a green */
+}
+
+.button-error {
+    background: rgb(202, 60, 60); /* this is a maroon */
+}
+
+.button-warning {
+    background: rgb(223, 117, 20); /* this is an orange */
+}
+
+.button-secondary {
+    background: rgb(66, 184, 221); /* this is a light blue */
+}

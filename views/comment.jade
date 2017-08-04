@@ -1,0 +1,44 @@
+extends layout
+
+block content
+	div.menu 
+		ul.menu-list 
+			li.menu-item 
+				a(href='/') 意见
+	div.main
+        
+		form(method='post', action='/').pure-form
+			button(type='submit').pure-button 返回
+            
+		div.result-msg
+        
+		form(id='mainForm', method='post', action='/comment/update').pure-form
+			table.main-table.pure-table.pure-table-bordered
+				thead
+					tr
+						th 名称
+						th 意见
+						th 时间
+						th 操作
+				tbody
+					- if (message)
+					- message.forEach(function(item){
+					- var tdClass = item.TYPE==4?'item-reverted':'';
+					tr
+						td(data-name='NAME',class=tdClass)= item.NAME
+						td(data-name='ATTITUDE',class=tdClass,style='max-width:400px;')= item.ATTITUDE
+						td(data-name='PROCESSTIME',class=tdClass)= moment(item.PROCESSTIME).format('YYYY-MM-DD HH:mm')
+						td  
+							-if (item.TYPE == 3 || item.TYPE == 5){
+							button.change-button.pure-button.button-success 修改
+							| 
+							button(data-id=item.ID, onclick='buttonFunc(\''+item.ID+'\',\'delete\')').revert-button.pure-button.button-error 撤回
+							| 
+							button(data-id=item.ID, onclick='buttonFunc(\''+item.ID+'\',\'update\')').submit-button.pure-button.button-secondary.pure-button-disabled 提交
+							-}else{
+							button(data-id=item.ID, onclick='buttonFunc(\''+item.ID+'\',\'rescue\')').rescue-button.pure-button.button-error 恢复
+							-}
+					- })
+                
+	script(src='/javascripts/main.js')
+            

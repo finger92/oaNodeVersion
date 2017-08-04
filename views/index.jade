@@ -1,0 +1,47 @@
+extends layout
+
+block content           
+	div.menu 
+		ul.menu-list 
+			li.menu-item 
+				a(href='/') 意见
+				
+	div.main
+
+		form(method='post', action='/').pure-form
+			input(name='docNum', placeholder='系统编号', value=params.docNum)
+			| 
+			input(name='docName', placeholder='公文名称' value=params.docName)
+			| 
+			select(name='tableName')
+				option(value='', selected=params.tableName == '') 
+				option(value='F', selected=params.tableName == 'F') 发文
+				option(value='S', selected=params.tableName == 'S') 收文
+				option(value='N', selected=params.tableName == 'N') 内呈
+				option(value='Z', selected=params.tableName == 'Z') 政呈
+			| 
+			button(type='submit').pure-button.button-success 搜索
+			| 
+			button(type='button', onclick='searchReset()').pure-button.button-error 重置
+
+		table.main-table.pure-table.pure-table-bordered.pure-table-striped
+			thead
+				tr
+					th 系统编号
+					th 公文名称
+					th 拟稿人
+					th 拟稿时间
+			tbody
+				- if (message)
+				- message.forEach(function(item){
+				tr
+					td= item.ITEM_DISPATCH_NUM
+					td(style='max-width:400px;') 
+						a(href='/comment?state='+item.STATE)= item.ITEM_DISPATCH_TITLE
+					td= item.ITEM_NIGAO_NAME
+					td= moment(item.ITEM_NIGAO_TIME).format('YYYY-MM-DD HH:mm')
+				- })
+
+	script(src='/javascripts/index.js')
+            
+            
